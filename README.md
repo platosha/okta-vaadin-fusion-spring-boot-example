@@ -29,6 +29,8 @@ You need a https://developer.okta.com account and set up a Web app and a user fo
 **`ListEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
 **Note:** Vaadin endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
 
+**`okta.env`** Your Okta environment file. Use `okta.env.template` as a template.
+
 ### Front end
 
 **`auth.ts`** contains the [Okta Auth JS](https://github.com/okta/okta-auth-js) configuration. It exposes an API for:
@@ -38,7 +40,7 @@ You need a https://developer.okta.com account and set up a Web app and a user fo
 - handling login redirects
 - providing an access token for HTTP requests
 
-**`routes.ts`** defines the application routes and authentication handling.
+**`index.ts`** defines the application routes and authentication handling.
 
 - an `authGuard` action is used to check if the user is authenticated. If not, the path is saved and the user is redirected to `/login`
 - the `/callback` route has an action that parses the response from the auth server and either redirects to the initially requested route or back to login.
@@ -51,4 +53,9 @@ You need a https://developer.okta.com account and set up a Web app and a user fo
 
 Make sure you have Java 11 or later and Maven installed.
 
-Start the app with `mvn` or by running `Application.java`
+Start the app with the following commands:
+
+```
+source okta.env
+mvn
+```
