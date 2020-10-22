@@ -1,6 +1,6 @@
-# Okta authentication in a Vaadin TS app
+# Okta authentication in a Vaadin Fusion app
 
-This example app shows you how to add Okta authentication to a client-side Vaadin app.
+This example app shows you how to add Okta authentication to a Vaadin Fusion app.
 
 ## Setup
 
