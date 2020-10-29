@@ -1,8 +1,8 @@
 import { AccessToken, OktaAuth } from '@okta/okta-auth-js';
 
 const authClient = new OktaAuth({
-  issuer: 'https://dev-133320.okta.com/oauth2/default', // use your own
-  clientId: '0oa63ohfx41tnFeq3357', // use your own
+  issuer: 'https://dev-294650.okta.com/oauth2/default', // use your own
+  clientId: '0oa13ctliarM7u3D64x7', // use your own
   redirectUri: 'http://localhost:8080/callback',
   pkce: true,
 });
@@ -13,14 +13,11 @@ const isAuthenticated = async () => {
 };
 
 const signIn = async (username: string, password: string) => {
-  console.log('login with username: ' + username)
   const authResult = await authClient.signIn({
     username,
     password,
     scopes: ['openid', 'email', 'profile'],
   });
-
-  console.log('authResult', authResult);
 
   if (authResult.status === 'SUCCESS') {
     authClient.token.getWithRedirect({
