@@ -2,7 +2,7 @@
   "name": "no-name",
   "license": "UNLICENSED",
   "dependencies": {
-    "@okta/okta-auth-js": "^4.0.2",
+    "@okta/okta-auth-js": "^4.0.3",
     "@polymer/iron-icon": "3.0.1",
     "@polymer/iron-list": "3.1.0",
     "@polymer/polymer": "3.2.0",
@@ -142,6 +142,6 @@
       "lit-html": "1.2.1",
       "@types/validator": "10.11.3"
     },
-    "hash": "d94f05df5a54e9d98285cdaa24b5fd20af835521f235d57cd4a9919c0a0a0bd6"
+    "hash": "3364128d5d262e57ee54d72809f08d68fccefc717abd3a1c8e6844e984c381b5"
   }
 }

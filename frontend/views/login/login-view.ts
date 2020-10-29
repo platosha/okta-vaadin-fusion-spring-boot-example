@@ -9,21 +9,21 @@ export class LoginView extends LitElement {
 
   render() {
     return html`
-      <style>
-        login-view {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          align-items: center;
-          justify-content: center;
-        }
-      </style>
-      <vaadin-login-form
-        @login=${this.login}
-        ?error=${this.error}
-        noForgotPassword
-      ></vaadin-login-form>
-    `;
+     <style>
+       login-view {
+         display: flex;
+         flex-direction: column;
+         height: 100%;
+         align-items: center;
+         justify-content: center;
+       }
+     </style>
+     <vaadin-login-form 
+       @login=${this.login} 
+       ?error=${this.error}
+       noForgotPassword
+     ></vaadin-login-form>
+   `;
   }
 
   async login(e: CustomEvent) {
@@ -34,7 +34,7 @@ export class LoginView extends LitElement {
     }
   }
 
-  // Password managers don't like shadow root, render in light DOM
+  // Render in light DOM for password managers
   protected createRenderRoot() {
     return this;
   }

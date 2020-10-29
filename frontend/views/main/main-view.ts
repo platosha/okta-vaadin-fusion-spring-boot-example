@@ -142,7 +142,7 @@ export class MainView extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('vaadin-router-location-changed', this._routerLocationChanged);
-    this.projectName = 'Vaadin Okta';
+    this.projectName = 'My Project';
   }
 
   disconnectedCallback() {

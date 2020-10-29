@@ -15,7 +15,7 @@ import org.vaadin.artur.helpers.LaunchUtil;
  *
  */
 @SpringBootApplication
-@PWA(name = "Vaadin Okta", shortName = "Vaadin Okta")
+@PWA(name = "My Project", shortName = "My Project")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 
     public static void main(String[] args) {

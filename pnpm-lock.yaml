@@ -1,5 +1,5 @@
 dependencies:
-  '@okta/okta-auth-js': 4.0.2
+  '@okta/okta-auth-js': 4.0.3
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-list': 3.1.0
   '@polymer/polymer': 3.2.0
@@ -931,7 +931,7 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Uv6h1sT+0DrblvIrolFtbvM1FgWm+/sy4B3pvLp67Zys+thcukzS5ekn7HsZFGpWP4Q3fYJCljbWQE/XivMRLw==
-  /@okta/okta-auth-js/4.0.2:
+  /@okta/okta-auth-js/4.0.3:
     dependencies:
       Base64: 0.3.0
       core-js: 3.6.5
@@ -947,7 +947,7 @@ packages:
       node: '>=10.3'
       yarn: ^1.7.0
     resolution:
-      integrity: sha512-XHOaU+qBsNEj0m3Dg9ZzCjHdPAYb5o3a9ZOqTOiDNZpkuIB2u9gbyrePoEiSz0jkUDhzenNqhSH4HkaK6R96cw==
+      integrity: sha512-l7qrhXvpZih2o1F4pZy7b9sEVqGroPNgnmIix60/Jjxi+uIoeAz6UMIJq6LEX7C5TTWr2U0tTHuBcJJkcai9IA==
   /@polymer/iron-a11y-announcer/3.0.2:
     dependencies:
       '@polymer/polymer': 3.2.0
@@ -6854,7 +6854,7 @@ packages:
     resolution:
       integrity: sha512-HG/DWAJa1PAnHT9JAhNa8AbAv3FPaiLzioSjCcmuXXhP8MlpHO5vwls4g4j6n30Z74GVQj8Xa62dWVx1QCGklg==
 specifiers:
-  '@okta/okta-auth-js': ^4.0.2
+  '@okta/okta-auth-js': ^4.0.3
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-list': 3.1.0
   '@polymer/polymer': 3.2.0
