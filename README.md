@@ -2,17 +2,47 @@
 
 This example app shows you how to add Okta authentication to a Vaadin Fusion app.
 
-## Setup
+**Prerequisites:** [Java 11](https://adoptopenjdk.net/)+ and Maven 3.6+.
 
-- Spring Boot
-- Vaadin 17
-- TypeScript-based LitElement views
-- Okta Auth JS
-- Okta Spring Boot
+> [Okta](https://developer.okta.com/) has Authentication and User Management APIs that reduce development time with instant-on, scalable user infrastructure. Okta's intuitive API and expert support make it easy for developers to authenticate, manage and secure users and roles in any application.
 
-## Pre-requisites
+* [Getting Started](#getting-started)
+* [Help](#help)
+* [Links](#links)
+* [License](#license)
 
-You need a https://developer.okta.com account and set up a Web app and a user for it.
+## Getting Started
+
+If you don't have one, [create an Okta Developer account](https://developer.okta.com/signup/). After you've completed the setup process, log in to your account and navigate to **Applications** > **Add Application**. Click **SPA** and **Next**. On the next page, enter the following values and click **Done**.
+
+- **Name**: Vaadin Fusion
+- **Base URIs**: `http://localhost:8080`
+- **Login redirect URIs**: `http://localhost:8080/callback`
+- **Logout redirect URIs**: `http://localhost:8080`
+- **Grant type allowed**: Authorization Code
+
+Copy your issuer into `src/main/application.properties`:
+
+```properties
+okta.oauth2.issuer=https://{yourOktaDomain}/oauth2/default
+```
+
+Copy your issuer and client ID into `frontend/auth.ts`:
+
+```ts
+const authClient = new OktaAuth({
+  issuer: 'https://{yourOktaDomain}/oauth2/default',
+  clientId: '{yourClientID}',
+  redirectUri: 'http://localhost:8080/callback',
+  pkce: true,
+});
+```
+
+Start the app by running Maven:
+
+```
+mvn
+```
 
 ## How it works
 
@@ -28,8 +58,6 @@ You need a https://developer.okta.com account and set up a Web app and a user fo
 
 **`ListEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
 **Note:** Vaadin endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
-
-**`okta.env`** Your Okta environment file. Use `okta.env.template` as a template.
 
 ### Front end
 
@@ -49,13 +77,21 @@ You need a https://developer.okta.com account and set up a Web app and a user fo
 
 **`login-view.ts`** has a login form and calls the `signIn` API that `auth.ts` exposes.
 
-## How to run the app
+## Links
 
-Make sure you have Java 11 or later and Maven installed.
+This example uses the following libraries:
 
-Start the app with the following commands:
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Vaadin 17](https://vaadin.com/)
+- TypeScript-based LitElement views
+- [Okta Auth JS SDK](https://github.com/okta/okta-auth-js#readme)
+- [Okta Spring Boot Starter](https://github.com/okta/okta-spring-boot#readme)
 
-```
-source okta.env
-mvn
-```
+## Help
+
+Please post any questions as comments on the [blog post]() or visit our [Okta Developer Forums](https://devforum.okta.com/).
+
+## License
+
+Apache 2.0, see [LICENSE](LICENSE).
+
