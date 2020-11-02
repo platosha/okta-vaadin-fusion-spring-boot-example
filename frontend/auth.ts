@@ -1,10 +1,10 @@
 import { AccessToken, OktaAuth } from '@okta/okta-auth-js';
 
 const authClient = new OktaAuth({
-  issuer: 'https://dev-294650.okta.com/oauth2/default', // use your own
-  clientId: '0oa13ctliarM7u3D64x7', // use your own
-  redirectUri: 'http://localhost:8080/callback',
-  pkce: true,
+  issuer: 'https://dev-133320.okta.com/oauth2/default',
+  clientId: '0oa63ohfx41tnFeq3357',
+  redirectUri: window.location.origin + '/callback',
+  pkce: true
 });
 
 const isAuthenticated = async () => {
@@ -33,7 +33,7 @@ const handleAuthentication = async () => {
   if (authClient.token.isLoginRedirect()) {
     try {
       const tokenResponse = await authClient.token.parseFromUrl();
-      const { accessToken, idToken } = tokenResponse.tokens;
+      const {accessToken, idToken} = tokenResponse.tokens;
       if (!accessToken || !idToken) return false;
 
       authClient.tokenManager.add('accessToken', accessToken);

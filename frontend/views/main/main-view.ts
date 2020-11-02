@@ -48,6 +48,10 @@ export class MainView extends LitElement {
           font-size: var(--lumo-font-size-l);
           margin: 0;
         }
+        
+        header .logout {
+          margin-right: 12px;
+        }
 
         header img {
           border-radius: 50%;
@@ -111,6 +115,7 @@ export class MainView extends LitElement {
           <vaadin-drawer-toggle></vaadin-drawer-toggle>
           <h1>${this.getSelectedTabName(this.menuTabs)}</h1>
           <img src="images/user.svg" alt="Avatar" />
+          <a href="logout" class="logout">Log out</a>
         </header>
 
         <div slot="drawer">
@@ -142,7 +147,7 @@ export class MainView extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('vaadin-router-location-changed', this._routerLocationChanged);
-    this.projectName = 'My Project';
+    this.projectName = 'Vaadin Okta';
   }
 
   disconnectedCallback() {

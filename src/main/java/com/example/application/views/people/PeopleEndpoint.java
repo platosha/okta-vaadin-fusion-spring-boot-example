@@ -1,14 +1,11 @@
 package com.example.application.views.people;
 
-import com.example.application.views.people.Person;
 import com.vaadin.flow.server.connect.Endpoint;
-import com.vaadin.flow.server.connect.auth.AnonymousAllowed;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Endpoint
-@AnonymousAllowed
 public class PeopleEndpoint {
 
     // We'll use a simple list to hold data
