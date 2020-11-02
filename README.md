@@ -1,30 +1,97 @@
-# Custom project from start.vaadin.com
+# Okta authentication in a Vaadin Fusion app
 
-This project was created from https://start.vaadin.com. It's a fully working Vaadin application that you continue developing locally.
-It has all the necessary dependencies and files to help you get going.
+This example app shows you how to add Okta authentication to a Vaadin Fusion app.
 
-The project is a standard Maven project, so you can import it to your IDE of choice. You'll need to have Java 8+ and Node.js 10+ installed.
+**Prerequisites:** [Java 11](https://adoptopenjdk.net/)+ and Maven 3.6+.
 
-To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
+> [Okta](https://developer.okta.com/) has Authentication and User Management APIs that reduce development time with instant-on, scalable user infrastructure. Okta's intuitive API and expert support make it easy for developers to authenticate, manage and secure users and roles in any application.
 
-## Project structure
+* [Getting Started](#getting-started)
+* [Help](#help)
+* [Links](#links)
+* [License](#license)
 
-| Directory                                  | Description                                                                                                                 |
-| :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `frontend/`                                | Client-side source directory                                                                                                |
-| &nbsp;&nbsp;&nbsp;&nbsp;`index.html`       | HTML template                                                                                                               |
-| &nbsp;&nbsp;&nbsp;&nbsp;`index.ts`         | Frontend entrypoint, contains the client-side routing setup using [Vaadin Router](https://vaadin.com/router)                |
-| &nbsp;&nbsp;&nbsp;&nbsp;`main-layout.ts`   | Main layout Web Component, contains the navigation menu, uses [App Layout](https://vaadin.com/components/vaadin-app-layout) |
-| &nbsp;&nbsp;&nbsp;&nbsp;`views/`           | UI views Web Components (TypeScript)                                                                                        |
-| &nbsp;&nbsp;&nbsp;&nbsp;`styles/`          | Styles directory (CSS)                                                                                                      |
-| `src/main/java/<groupId>/`                 | Server-side source directory, contains the server-side Java views                                                           |
-| &nbsp;&nbsp;&nbsp;&nbsp;`Application.java` | Server entrypoint                                                                                                           |
+## Getting Started
 
-## What next?
+If you don't have one, [create an Okta Developer account](https://developer.okta.com/signup/). After you've completed the setup process, log in to your account and navigate to **Applications** > **Add Application**. Click **SPA** and **Next**. On the next page, enter the following values and click **Done**.
 
-[vaadin.com](https://vaadin.com) has lots of material to help you get you started:
+- **Name**: Vaadin Fusion
+- **Base URIs**: `http://localhost:8080`
+- **Login redirect URIs**: `http://localhost:8080/callback`
+- **Logout redirect URIs**: `http://localhost:8080`
+- **Grant type allowed**: Authorization Code
 
-- Read the [Quick Start Guide](https://vaadin.com/docs/v16/flow/typescript/quick-start-guide.html) to learn the first steps of full stack Vaadin applications development.
-- Follow the tutorials in [vaadin.com/learn/tutorials](https://vaadin.com/learn/tutorials). Especially [Building Modern Web Apps with Spring Boot and Vaadin](https://vaadin.com/learn/tutorials/modern-web-apps-with-spring-boot-and-vaadin) is good for getting a grasp of the basic Vaadin concepts.
-- Read the documentation in [vaadin.com/docs](https://vaadin.com/docs).
-- For a bigger Vaadin application example, check out the Full Stack App starter from [vaadin.com/start](https://vaadin.com/start).
+Copy your issuer into `src/main/application.properties`:
+
+```properties
+okta.oauth2.issuer=https://{yourOktaDomain}/oauth2/default
+```
+
+Copy your issuer and client ID into `frontend/auth.ts`:
+
+```ts
+const authClient = new OktaAuth({
+  issuer: 'https://{yourOktaDomain}/oauth2/default',
+  clientId: '{yourClientID}',
+  redirectUri: 'http://localhost:8080/callback',
+  pkce: true,
+});
+```
+
+Start the app by running Maven:
+
+```
+mvn
+```
+
+## How it works
+
+### Back end
+
+**`pom.xml`** Vaadin Spring Boot starter with the following added dependencies:
+
+- spring-security-web
+- spring-security-config
+- okta-spring-boot-starter
+
+**`SecurityConfiguration.java`** Enables Spring Security and lets Vaadin endpoints handle the authorization.
+
+**`ListEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
+**Note:** Vaadin endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
+
+### Front end
+
+**`auth.ts`** contains the [Okta Auth JS](https://github.com/okta/okta-auth-js) configuration. It exposes an API for:
+
+- checking if a user is authenticated
+- signing in/out
+- handling login redirects
+- providing an access token for HTTP requests
+
+**`index.ts`** defines the application routes and authentication handling.
+
+- an `authGuard` action is used to check if the user is authenticated. If not, the path is saved and the user is redirected to `/login`
+- the `/callback` route has an action that parses the response from the auth server and either redirects to the initially requested route or back to login.
+
+**`connect-client.ts`** defines a middleware that adds the access token to all server requests.
+
+**`login-view.ts`** has a login form and calls the `signIn` API that `auth.ts` exposes.
+
+## Links
+
+This example uses the following libraries:
+
+- [Spring Boot](https://spring.io/projects/spring-boot)
+- [Vaadin 17](https://vaadin.com/)
+- TypeScript-based LitElement views
+- [Okta Auth JS SDK](https://github.com/okta/okta-auth-js#readme)
+- [Okta Spring Boot Starter](https://github.com/okta/okta-spring-boot#readme)
+
+## Help
+
+Please post any questions as comments on the [blog post]() or visit our [Okta Developer Forums](https://devforum.okta.com/).
+
+## License
+
+Apache 2.0, see [LICENSE](LICENSE).
+
