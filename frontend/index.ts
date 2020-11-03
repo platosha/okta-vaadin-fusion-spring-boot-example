@@ -15,7 +15,7 @@ const authGuard = async (context: Context, commands: Commands) => {
 };
 
 const routes: Route[] = [
-  { path: '/login', component: 'login-view' },
+  {path: '/login', component: 'login-view'},
   {
     path: '/callback',
     action: async (_: Context, commands: Commands) => {
@@ -31,9 +31,6 @@ const routes: Route[] = [
   {
     path: '/logout',
     action: async (_: Context, commands: Commands) => {
-      // First log out on the client-side, when destroy the server-side security context.
-      // Server-side logging out is handled by Spring Security: it handles HTTP GET requests to
-      // /logout and redirects to /login?logout in response.
       signOut();
       location.reload();
       return commands.prevent();
@@ -44,8 +41,8 @@ const routes: Route[] = [
     component: 'main-view',
     action: authGuard, // Require a logged in user to access
     children: [
-      { path: '', component: 'hello-world-view' },
-      { path: 'hello', component: 'hello-world-view' },
+      {path: '', component: 'hello-world-view'},
+      {path: 'hello', component: 'hello-world-view'},
       {
         path: 'people',
         component: 'people-view',
