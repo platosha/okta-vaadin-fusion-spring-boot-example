@@ -50,13 +50,12 @@ mvn
 
 **`pom.xml`** Vaadin Spring Boot starter with the following added dependencies:
 
-- spring-security-web
-- spring-security-config
 - okta-spring-boot-starter
+- lombok
 
 **`SecurityConfiguration.java`** Enables Spring Security and lets Vaadin endpoints handle the authorization.
 
-**`ListEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
+**`PeopleEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
 **Note:** Vaadin endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
 
 ### Front end
