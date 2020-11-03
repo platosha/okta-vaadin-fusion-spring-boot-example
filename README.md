@@ -1,6 +1,6 @@
-# Okta authentication in a Vaadin Fusion app
+# Vaadin + Spring Boot Example
 
-This example app shows you how to add Okta authentication to a Vaadin Fusion app.
+This example app shows you how to build a Vaadin Fusion and Spring Boot app and add Okta for authentication.
 
 **Prerequisites:** [Java 11](https://adoptopenjdk.net/)+ and Maven 3.6+.
 
