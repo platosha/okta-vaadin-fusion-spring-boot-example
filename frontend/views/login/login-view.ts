@@ -21,7 +21,7 @@ export class LoginView extends LitElement {
      <vaadin-login-form 
        @login=${this.login} 
        ?error=${this.error}
-       noForgotPassword
+       no-forgot-password
      ></vaadin-login-form>
    `;
   }
