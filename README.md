@@ -1,6 +1,6 @@
 # Vaadin + Spring Boot Example
 
-This example app shows you how to build a Vaadin Fusion and Spring Boot app and add Okta for authentication.
+This example app shows you how to build a Vaadin Fusion and Spring Boot app and add Okta for authentication. Please read [A Quick Guide to Security with Vaadin Fusion and Spring Boot](https://developer.okta.com/blog/2020/11/09/vaadin-spring-boot) to see how it was created.
 
 **Prerequisites:** [Java 11](https://adoptopenjdk.net/)+ and Maven 3.6+.
 
@@ -88,7 +88,7 @@ This example uses the following libraries:
 
 ## Help
 
-Please post any questions as comments on the [blog post]() or visit our [Okta Developer Forums](https://devforum.okta.com/).
+Please post any questions as comments on the [blog post](https://developer.okta.com/blog/2020/11/09/vaadin-spring-boot) or visit our [Okta Developer Forums](https://devforum.okta.com/).
 
 ## License
 
