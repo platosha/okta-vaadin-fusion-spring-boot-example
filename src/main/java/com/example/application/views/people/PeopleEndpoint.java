@@ -1,6 +1,6 @@
 package com.example.application.views.people;
 
-import com.vaadin.flow.server.connect.Endpoint;
+import dev.hilla.Endpoint;
 
 import java.util.ArrayList;
 import java.util.List;

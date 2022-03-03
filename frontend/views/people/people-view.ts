@@ -1,23 +1,19 @@
-import {
-  LitElement,
-  html,
-  css,
-  customElement,
-  internalProperty,
-} from 'lit-element';
+import { html, css } from 'lit';
+import { customElement, state } from 'lit/decorators';
+import { View } from '../view';
 import Person from '../../generated/com/example/application/views/people/Person';
 
 import '@vaadin/vaadin-text-field';
 import '@vaadin/vaadin-button';
-import { Binder, field } from '@vaadin/form';
+import { Binder, field } from '@hilla/form';
 import PersonModel from '../../generated/com/example/application/views/people/PersonModel';
 import { addPerson, getPeople } from '../../generated/PeopleEndpoint';
 
 @customElement('people-view')
-export class PeopleView extends LitElement {
-  @internalProperty()
+export class PeopleView extends View {
+  @state()
   private people: Person[] = [];
-  @internalProperty()
+  @state()
   private message = '';
 
   // Manages form state, binds inputs to the model
@@ -55,9 +51,9 @@ export class PeopleView extends LitElement {
   async connectedCallback() {
     super.connectedCallback();
     try {
-      this.people = await getPeople();
+      this.people = await getPeople() as Person[];
     } catch (e) {
-      this.message = `Failed to get people: ${e.message}.`;
+      this.message = `Failed to get people: ${e instanceof Error ? e.message : e}.`;
     }
   }
 
@@ -69,7 +65,7 @@ export class PeopleView extends LitElement {
         this.binder.clear();
       }
     } catch (e) {
-      this.message = `Failed to save: ${e.message}.`;
+      this.message = `Failed to save: ${e instanceof Error ? e.message : e}.`;
     }
   }
 

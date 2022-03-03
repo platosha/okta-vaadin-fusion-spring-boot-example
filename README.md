@@ -1,6 +1,6 @@
-# Vaadin + Spring Boot Example
+# Hilla + Okta Example
 
-This example app shows you how to build a Vaadin Fusion and Spring Boot app and add Okta for authentication. Please read [A Quick Guide to Security with Vaadin Fusion and Spring Boot](https://developer.okta.com/blog/2020/11/09/vaadin-spring-boot) to see how it was created.
+This example app shows you how to build a Hilla app and add Okta for authentication. Please read [A Quick Guide to Security with Vaadin Fusion and Spring Boot](https://developer.okta.com/blog/2020/11/09/vaadin-spring-boot) to see how it was created.
 
 **Prerequisites:** [Java 11](https://adoptopenjdk.net/)+ and Maven 3.6+.
 
@@ -15,7 +15,7 @@ This example app shows you how to build a Vaadin Fusion and Spring Boot app and 
 
 If you don't have one, [create an Okta Developer account](https://developer.okta.com/signup/). After you've completed the setup process, log in to your account and navigate to **Applications** > **Add Application**. Click **SPA** and **Next**. On the next page, enter the following values and click **Done**.
 
-- **Name**: Vaadin Fusion
+- **Name**: Hilla Application
 - **Base URIs**: `http://localhost:8080`
 - **Login redirect URIs**: `http://localhost:8080/callback`
 - **Logout redirect URIs**: `http://localhost:8080`
@@ -48,15 +48,15 @@ mvn
 
 ### Back end
 
-**`pom.xml`** Vaadin Spring Boot starter with the following added dependencies:
+**`pom.xml`** Hilla Spring Boot starter with the following added dependencies:
 
 - okta-spring-boot-starter
 - lombok
 
-**`SecurityConfiguration.java`** Enables Spring Security and lets Vaadin endpoints handle the authorization.
+**`SecurityConfiguration.java`** Enables Spring Security and lets Hilla endpoints handle the authorization.
 
-**`PeopleEndpoint.java`** is a Vaadin endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
-**Note:** Vaadin endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
+**`PeopleEndpoint.java`** is a Hilla endpoint that exposes a REST endpoint and generates TS interfaces for accessing it in a type-safe manner.
+**Note:** Hilla endpoints require authentication by default unless you opt-out by adding a `@AnonymousAllowed` annotation to the class or metod.
 
 ### Front end
 
@@ -81,7 +81,7 @@ mvn
 This example uses the following libraries:
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
-- [Vaadin 17](https://vaadin.com/)
+- [Hilla](https://hilla.dev/)
 - TypeScript-based LitElement views
 - [Okta Auth JS SDK](https://github.com/okta/okta-auth-js#readme)
 - [Okta Spring Boot Starter](https://github.com/okta/okta-spring-boot#readme)

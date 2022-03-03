@@ -1,10 +1,12 @@
-import { showNotification } from '@vaadin/flow-frontend/a-notification';
+import { Notification } from '@vaadin/notification';
+import { View } from '../view';
 import '@vaadin/vaadin-button';
 import '@vaadin/vaadin-text-field';
-import { css, customElement, html, LitElement } from 'lit-element';
+import { css, html } from 'lit';
+import { customElement } from 'lit/decorators';
 
 @customElement('hello-world-view')
-export class HelloWorldView extends LitElement {
+export class HelloWorldView extends View {
   name: string = '';
 
   static get styles() {
@@ -26,6 +28,8 @@ export class HelloWorldView extends LitElement {
   }
 
   sayHello() {
-    showNotification('Hello ' + this.name);
+    Notification.show(html`
+      Hello ${this.name}
+    `);
   }
 }

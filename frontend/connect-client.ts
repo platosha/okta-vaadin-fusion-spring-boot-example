@@ -2,7 +2,7 @@ import {
   ConnectClient,
   MiddlewareContext,
   MiddlewareNext,
-} from '@vaadin/flow-frontend/Connect';
+} from '@hilla/frontend/Connect';
 import { getAccessToken } from './auth';
 
 const client = new ConnectClient({

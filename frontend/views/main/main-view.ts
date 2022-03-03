@@ -1,11 +1,12 @@
-import { css, customElement, html, LitElement, property } from 'lit-element';
+import { css, html } from 'lit';
+import { customElement, property } from 'lit/decorators';
+import { Layout } from '../view';
 import '@vaadin/vaadin-app-layout/theme/lumo/vaadin-app-layout';
 // @ts-ignore
 import { AppLayoutElement } from '@vaadin/vaadin-app-layout/src/vaadin-app-layout';
 import '@vaadin/vaadin-app-layout/vaadin-drawer-toggle';
 import '@vaadin/vaadin-tabs/theme/lumo/vaadin-tab';
 import '@vaadin/vaadin-tabs/theme/lumo/vaadin-tabs';
-import { CSSModule } from '@vaadin/flow-frontend/css-utils';
 import { router } from '../../index';
 
 // Rename to something more appropriate.
@@ -15,7 +16,7 @@ interface MenuTab {
 }
 
 @customElement('main-view')
-export class MainView extends LitElement {
+export class MainView extends Layout {
   @property({ type: Object }) location = router.location;
 
   @property({ type: Array }) menuTabs: MenuTab[] = [
@@ -27,9 +28,6 @@ export class MainView extends LitElement {
 
   static get styles() {
     return [
-      CSSModule('lumo-typography'),
-      CSSModule('lumo-color'),
-      CSSModule('app-layout'),
       css`
         :host {
           display: block;
@@ -147,7 +145,7 @@ export class MainView extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     window.addEventListener('vaadin-router-location-changed', this._routerLocationChanged);
-    this.projectName = 'Vaadin Okta';
+    this.projectName = 'Hilla Okta';
   }
 
   disconnectedCallback() {

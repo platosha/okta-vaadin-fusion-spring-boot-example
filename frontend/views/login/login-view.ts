@@ -1,10 +1,12 @@
-import { customElement, html, internalProperty, LitElement } from 'lit-element';
+import { html } from 'lit';
+import { customElement, state } from 'lit/decorators';
+import { View } from '../view';
 import { signIn } from '../../auth';
 import '@vaadin/vaadin-login/vaadin-login-form';
 
 @customElement('login-view')
-export class LoginView extends LitElement {
-  @internalProperty()
+export class LoginView extends View {
+  @state()
   private error = !!new URLSearchParams().get('error');
 
   render() {
@@ -32,10 +34,5 @@ export class LoginView extends LitElement {
     } catch (e) {
       this.error = true;
     }
-  }
-
-  // Render in light DOM for password managers
-  protected createRenderRoot() {
-    return this;
   }
 }
